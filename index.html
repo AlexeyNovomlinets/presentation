@@ -4,10 +4,10 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>WebSocket</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+		<link rel="stylesheet" href="css/theme/moon.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -26,6 +26,100 @@
 			<div class="slides">
 				<section>
 					<h1>WebSocket</h1>
+				</section>
+				<section>
+					<section>
+						<h2>How it works</h2>
+					</section>
+					<section>
+						<h3>HTTP Client - to - HTTP Server</h3>
+						<img src="./img/http_request.PNG">
+					</section>
+					<section>
+						<h3>HTTP Server - to - HTTP Client</h3>
+						<img src="./img/http_response.PNG">
+					</section>
+					<section>
+						<h3>WebSocket Browser Support</h3>
+						<ul>
+							<li>Google Chrome (4.0.249.0+ version);</li>
+							<li>Apple Safari (5.0.7533.16+ version);</li>
+							<li>Mozilla Firefox (4+ version);</li>
+							<li>Opera (10.70 9067+ version);</li>
+							<li>Internet Explorer (10+ version).</li>
+						</ul>
+						<a href="http://caniuse.com/#feat=websockets.">http://caniuse.com/#feat=websockets.</a>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>WebSocket API</h2>
+					</section>
+					<section>
+						<h3>Create WebSocket</h3>
+						<pre>
+						<code class="javascript">WebSocket WebSocket(
+  in DOMString url,
+  in optional DOMString protocols
+);
+
+http:
+const ws = new WebSocket('ws://echo.websocket.org');
+
+https:
+const wss = new WebSocket('wss://echo.websocket.org', 'someProtocol');
+						</code>
+						</pre>
+					</section>
+					<section>
+						<h3>Properties</h3>
+						<pre>
+							<code class="javascript">WebSocket.binaryType;
+WebSocket.readyState;
+WebSocket.bufferedAmount;
+WebSocket.extensions;
+WebSocket.protocol;
+WebSocket.url;
+
+WebSocket.onopen = () => {};
+WebSocket.onmessage = () => {};
+WebSocket.onclose = () => {};
+WebSocket.onerror = () => {};
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h3>Methods</h3>
+						<pre>
+							<code class="javascript">WebSocket.send(data);
+WebSocket.close([code[, reason]]);
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h3>Example</h3>
+						<pre>
+							<code class="javascript">const ws = new WebSocket('ws://echo.websocket.org');
+
+ws.onopen = () => {
+  console.log('Online!');
+  ws.send('String data');
+};
+
+ws.onmessage = event => {
+  console.log(event.data);
+  ws.close();
+};
+
+ws.onclose = event => console.log('Offline!');
+ws.onerror = error => console.log('WebSocket Error: ' + error);
+							</code>
+						</pre>
+					</section>
+				</section>
+				<section>
+					<h2>Thank you for your attention!</h2>
+					<span<>Contact address: <a href='mailto:alex.novomlinets@gmail.com'>alex.novomlinets@gmail.com</a></span>
 				</section>
 			</div>
 		</div>
